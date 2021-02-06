@@ -53,24 +53,23 @@ module.exports = function(environment) {
     },
     sentry: {
       dsn: 'https://b08e057fdd814600b4fcd0a0d2a43aee@o313902.ingest.sentry.io/5365024'
-    }
-  };
+    },
 
+  };
+  ENV.host = process.env.API_URL;
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.host = 'http://localhost:3000';
+
     ENV['ember-cli-mirage'] = {
       enabled: false
     }
   }
 
   if (environment === 'test') {
-    ENV.host = 'http://localhost:3000';
-
     // Testem prefers this...
     ENV.locationType = 'none';
 

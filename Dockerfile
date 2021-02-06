@@ -1,6 +1,6 @@
-FROM ruby:3
+FROM ruby:2.7
 #RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN apt-get update -qq && apt-get install -y npm nodejs postgresql-client make
+#RUN apt-get update -qq && apt-get install -y npm nodejs postgresql-client make
 #RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
@@ -12,7 +12,8 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 #RUN gem install bundler && bundle install --jobs 20 --retry 5
 RUN bundle install
 COPY . /myapp
-
+#RUN apt-get install nodejs
+#RUN npm install
 # RUN chmod -R 777 /myapp/frontend/tmp/
 #RUN chmod -R 777 /myapp/tmp/
 
