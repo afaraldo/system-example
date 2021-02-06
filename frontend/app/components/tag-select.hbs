@@ -1,0 +1,13 @@
+<PowerSelectMultiple
+        @searchEnabled={{true}}
+        @search={{fn this.searchTags}}
+        @searchField="name"
+        @valueField="id"
+        @verticalPosition="below"
+        @selected={{@selected}}
+        @onChange={{action (mut @selected)}}
+        as |tag|
+>
+  {{tag.name}}
+</PowerSelectMultiple>
+{{yield}}

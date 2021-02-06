@@ -1,0 +1,46 @@
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-sm c-sidebar-lg c-sidebar-md-show c-sidebar-minimized c-sidebar-brand-minimized" id="sidebar">
+  <div class="c-sidebar-brand d-md-down-none">
+  </div>
+  <ul class="c-sidebar-nav">
+    <li class="c-sidebar-nav-item">
+      {{#link-to "dashboard" class="c-sidebar-nav-link"}}
+        {{fa-icon "tachometer-alt" class="c-sidebar-nav-icon"}} Dashboard
+      {{/link-to}}
+    </li>
+    <li class="c-sidebar-nav-dropdown">
+      <a class="c-sidebar-nav-dropdown-toggle" href="#">
+        {{fa-icon "chart-line" class="c-sidebar-nav-icon"}} Ingresos
+      </a>
+      <ul class="c-sidebar-nav-dropdown-items">
+        <li class="c-sidebar-nav-item">
+          {{#link-to "invoices" class="c-sidebar-nav-link"}}
+            {{fa-icon "file-invoice-dollar" class="c-sidebar-nav-icon"}} Facturas
+          {{/link-to}}
+        </li>
+      </ul>
+    </li>
+    <li class="c-sidebar-nav-dropdown">
+      <a class="c-sidebar-nav-dropdown-toggle" href="#">
+        {{fa-icon "shopping-cart" class="c-sidebar-nav-icon"}} Egresos
+      </a>
+      <ul class="c-sidebar-nav-dropdown-items">
+        <li class="c-sidebar-nav-item">
+          {{#link-to "provider-invoices" class="c-sidebar-nav-link"}}
+            Facturas
+          {{/link-to}}
+        </li>
+        <li class="c-sidebar-nav-item">
+          {{#link-to "reports.invoices" class="c-sidebar-nav-link"}}
+            Reportes
+          {{/link-to}}
+        </li>
+      </ul>
+    </li>
+    <li class="c-sidebar-nav-item">
+      {{#link-to "reports.index" class="c-sidebar-nav-link"}}
+        {{fa-icon "chart-line" class="c-sidebar-nav-icon"}} Reportes
+      {{/link-to}}
+    </li>
+  </ul>
+  <button class="c-sidebar-minimizer c-brand-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+</div>

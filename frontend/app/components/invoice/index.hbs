@@ -1,0 +1,124 @@
+<div class="card card-accent-primary">
+  <div class="card-header">
+    Factura
+  </div>
+  <div class="collapse show">
+    <div class="card-body">
+      <BsForm @formLayout="vertical" @model={{@model}} @onSubmit={{action "save"}} as |form|>
+        <div class="row">
+          <div class="col-3">
+            <form.element @label="Razón Social" @property="name" as |el|>
+              <Autocomplete
+                      @displayKey="fullName"
+                      @filter="name_or_document_number_cont"
+                      @placeholder="Razón Social"
+                      @modelName="person"
+                      @selected={{action "autocompleteAfterPersonSelection"}}
+                      @page={{hash size=5 }}
+                      @globalOptions={{hash templates=(hash empty="<p><em>Nothing Found</em></p>")}}
+                      @sort="date,number"
+                      @suggestion={{ suggestionCustomized }}
+                      @autofocus="true"
+                      @id={{el.id}}
+                      @value={{el.value}}
+                      @class={{el.class}}
+                      @validation={{el.validation}}
+              />
+            </form.element>
+          </div>
+          <form.element @controlType="text" @label="RUC" @placeholder="RUC" @class="col-md-2" @property="ruc" as |el|>
+            <div class="input-group">
+              <el.control />
+              <div class="input-group-append">
+                <span class="input-group-text">{{@model.dv}}</span>
+              </div>
+            </div>
+          </form.element>
+          <form.element @controlType="text" @label="Número" @name="number" @placeholder="Número" @class="col-md-2" @property="number" />
+          <div class="col-md-4">
+            <form.element @label="Etiquetas" @property="tags" as |el|>
+              <PowerSelectMultipleWithCreate
+                      @searchEnabled={{true}}
+                      @search={{fn this.searchTags}}
+                      @searchField="name"
+                      @verticalPosition="below"
+                      @options={{tags}}
+                      @selected={{@model.tags}}
+                      @onChange={{action (mut @model.tags)}}
+                      @onCreate={{action this.addNew}}
+                      @id={{el.id}}
+                      as |tag|
+              >
+                {{tag.name}}
+              </PowerSelectMultipleWithCreate>
+            </form.element>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <form.element @label="Fecha" @controlType="text" @property="date" as |el|>
+              <PikadayInput @value={{el.value}} @format="DD/MM/YYYY" @onSelection={{action (mut el.value)}} id={{el.id}} @class="form-control"
+                            @placeholder="Fecha" @locale='ru' @enableTime={{true}} />
+            </form.element>
+          </div>
+          <form.element @controlType="text" @label="Timbrado" @placeholder="Timbrado" @class="col-md-2" @property="stampingNumber" />
+          <div class="col-md-2">
+            <form.element @label="Vencimiento Timbrado" @controlType="text" @property="stampingExpiry" as |el|>
+              <PikadayInput @value={{el.value}} @format="DD/MM/YYYY" @onSelection={{action (mut el.value)}} id={{el.id}} @class="form-control"
+                            @placeholder="Vencimiento Timbrado"/>
+            </form.element>
+          </div>
+          <div class="col-md-2 form-group">
+            <form.element @label="Condición" @property="condition" @useIcons={{false}} as |el|>
+              <BsButtonGroup @value={{@model.condition}} @type="radio" @onChange={{action (mut @model.condition)}} as |bg|>
+                <bg.button @type="outline-secondary" @value={{true}}>Contado</bg.button>
+                <bg.button @type="outline-secondary" @value={{false}}>Crédito</bg.button>
+              </BsButtonGroup>
+            </form.element>
+          </div>
+          {{#if @model.condition }}
+            <div class="col-md-3"></div>
+          {{else}}
+            <div class="col-md-3">
+              <form.element @label="Vencimiento" @controlType="text" @property="invoiceExpiry" as |el|>
+                <PikadayInput @value={{el.value}} @format="DD/MM/YYYY" @onSelection={{action (mut el.value)}} id={{el.id}} @class="form-control"
+                              @placeholder="Vencimiento"/>
+              </form.element>
+            </div>
+          {{/if}}
+        </div>
+        <div class="row">
+          <div class="col-md-3"><label>Descripción</label></div>
+          <div class="col-md-1"><label>Cant.</label></div>
+          <div class="col-md-1"><label>Precio</label></div>
+          <div class="col-md-2"><label>Exento</label></div>
+          <div class="col-md-2"><label>IVA 5%</label></div>
+          <div class="col-md-2"><label>IVA 10%</label></div>
+        </div>
+        {{#each @model.items as |item|}}
+          <Invoice::InvoiceItem @form={{form}} @model={{item}} @addE={{action "add" }} @deleteE={{action "deleteItem" }} @items={{@model.items}} />
+        {{/each}}
+        <div class="row">
+          <form.element @controlType="text" @label="" @placeholder="Total" @class="ml-auto col-md-2" @property="total" />
+        </div>
+        <div class="form-actions">
+          <BsButton @buttonType="submit" @type={{if form.isRejected "danger" "primary"}} @disabled={{form.isSubmitting}}
+                    @pendingText="Procesando...">
+            Guardar
+            {{#if form.isSubmitting}}
+              {{fa-icon "spinner"}}
+            {{/if}}
+          </BsButton>
+          {{#unless @model.isNew }}
+            {{#if (eq @model.type 'Buy') }}
+              <LinkTo @route="provider-invoices.new" class="btn btn-link">Nueva Factura</LinkTo>
+            {{else}}
+              <LinkTo @route="invoices.new" class="btn btn-link">Nueva Factura</LinkTo>
+            {{/if}}
+          {{/unless}}
+        </div>
+      </BsForm>
+    </div>
+
+  </div>
+</div>

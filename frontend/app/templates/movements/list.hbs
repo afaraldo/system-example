@@ -1,0 +1,11 @@
+<h1>
+    Movimientos de caja
+    <LinkTo @route="movements.new" class="btn btn-primary">Registrar movimiento</LinkTo>
+</h1>
+{{models-table-server-paginated
+        data= model
+        columns= columns
+        useFilteringByColumns= false
+        useNumericPagination= true
+        showCurrentPageNumberSelect= false
+}}

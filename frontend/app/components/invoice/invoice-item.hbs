@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-3">
+    {{#form.element model=model property="description" as |el| }}
+      <Autocomplete
+              @displayKey="description"
+              @filter="description_cont"
+              @placeholder="Descripción"
+              @modelName="invoice-item"
+              @page={{hash size=5}}
+              @sort="date,number"
+              @id={{el.id}}
+              @value={{el.value}}
+              @selected={{action "autocompleteAfterSelection"}}
+      />
+    {{/form.element}}
+  </div>
+  {{form.element controlType="text" model=model label="" placeholder="Cant." class="col-md-1" property="quantity" }}
+  <div class="col-md-1">{{model.unitPrice}}</div>
+  {{form.element controlType="text" model=model label="" placeholder="Exento" class="col-md-2" property="iva0" }}
+  {{form.element controlType="text" model=model label="" placeholder="5%." class="col-md-2" property="iva5" }}
+  {{form.element controlType="text" model=model label="" placeholder="10%" class="col-md-2" property="iva10" }}
+  <div class="ml-auto col-md-1">
+    <BsButton @type="success" @class="btn" @icon="fas fa-plus" @onClick={{action "addItem"}}/>
+    {{#if isCleaned }}
+      <BsButton @type="secondary" @class="btn" @icon="far fa-trash-alt" @onClick={{action "deleteItem"}}/>
+    {{/if}}
+  </div>
+</div>

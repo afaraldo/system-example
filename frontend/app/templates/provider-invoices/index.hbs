@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header">
+    <b>Facturas Proveedores</b>
+  </div>
+  <div class="card-body">
+    <ModelsTableServerPaginated
+            @data={{this.model}}
+            @columns={{this.columns}}
+            @useFilteringByColumns={{false}}
+            @useNumericPagination={{true}}
+            @showCurrentPageNumberSelect={{false}}
+            @themeInstance={{this.themeInstance}}
+            @columnComponents={{hash
+            deleteRow=(
+                    component "delete-row-comp"
+                    onClick=this.deleteRecord
+            )
+    }}
+    />
+  </div>
+</div>
+{{outlet}}

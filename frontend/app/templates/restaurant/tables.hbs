@@ -1,0 +1,14 @@
+<div class="row">
+{{#each this.model as |table|}}
+  <div class="col-sm-3">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"> {{! table.clientName }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ table.name }}</h6>
+        <!--<LinkTo @route="restaurant.orders.order" @class="btn btn-secondary">Ordenar</LinkTo>-->
+      </div>
+    </div>
+  </div>
+{{/each}}
+</div>
+{{outlet}}

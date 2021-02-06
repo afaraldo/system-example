@@ -1,0 +1,52 @@
+<BsForm @formLayout="vertical" @model={{this}} @onSubmit={{action "save"}} as |form|>
+  <div class="row">
+    <div class="col-md-6">
+      <form.element @controlType="text" @placeholder="Nombre" @property="name" @autofocus="true"/>
+    </div>
+    <div class="col-md-3">
+      <form.element @controlType="text" @placeholder="Mesa" @property="name" @autofocus="true"/>
+    </div>
+    <div class="col-md-1">
+      <BsButton @buttonType="submit" @type={{if form.isRejected "danger" "primary"}} @disabled={{form.isSubmitting}} @pendingText="Downloading...">
+        Guardar
+        {{#if form.isSubmitting}}
+          {{fa-icon "spinner"}}
+        {{/if}}
+      </BsButton>
+    </div>
+  </div>
+</BsForm>
+<div class="row">
+  <div class="col-12">
+    <div class="card text-center">
+      <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Hamburguesas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cervezas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Gaseosas</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          {{#each this.model as |food|}}
+            <div class="col-2">
+              <div class="card" >
+                <img class="card-img-top" src="https://ep01.epimg.net/elpais/imagenes/2019/09/06/estilo/1567761729_884026_1567762022_noticia_normal.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h6 class="card-title">{{ food.name }}</h6>
+                  <p class="card-text">{{ food.description }}</p>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

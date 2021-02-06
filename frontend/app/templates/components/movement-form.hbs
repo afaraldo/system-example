@@ -1,0 +1,28 @@
+<BsForm @formLayout="vertical" @model={{model}} @onSubmit={{action "submit"}} as |form|>
+    <fieldset>
+        <div class="row">
+            <div class="col-md-2">
+                <form.element @controlType="text" @property="date" as |el|>
+                    <PikadayInput @value={{el.value}} @format="DD/MM/YYYY" @onSelection={{action (mut el.value)}} id={{el.id}} @class="form-control"
+                                  @placeholder="Fecha"/>
+                </form.element>
+            </div>
+            <div class="col-md-6">
+                <form.element @controlType="text" @placeholder="Descripci&oacute;n" @property="description" @autofocus="true"/>
+            </div>
+            <div class="col-md-4">
+                <form.element @controlType="integer" @placeholder="Monto" @property="amount"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-right">
+                <form.element @controlType="checkbox" @label="Ingreso" @property="isIncome" />
+            </div>
+        </div>
+    </fieldset>
+
+    <BsButton @defaultText={{buttonLabel}} @type={{if form.isRejected "danger" "primary"}} @buttonType="submit" >
+      {{#if form.isSubmitting}} {{fa-icon "spinner"}} {{/if}}
+    </BsButton>
+</BsForm>

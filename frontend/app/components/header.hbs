@@ -1,0 +1,35 @@
+<header class="c-header c-header-light">
+  <button class="c-header-toggler c-class-toggler d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+    <span class="navbar-toggler-icon">
+      <FaIcon @icon="bars" @size="4x" class="c-icon"/>
+    </span>
+  </button>
+  <ul class="c-header-nav d-md-down-none">
+    {{yield}}
+  </ul>
+  <ul class="c-header-nav mfs-auto">
+    <li class="c-header-nav-item dropdown">
+      <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        user@email.com
+      </a>
+      <div class="dropdown-menu dropdown-menu-right pt-0">
+        <div class="dropdown-header bg-light py-2">
+          <strong>Account</strong>
+        </div>
+        <div class="dropdown-header bg-light py-2">
+          <strong>Settings</strong>
+        </div>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" {{on "click" this.invalidateSession}} role="button">Cerrar sesión</a>
+      </div>
+    </li>
+    <button class="c-header-toggler c-class-toggler mfe-md-3 d-lg-none" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+      <span class="navbar-toggler-icon">
+        <FaIcon @icon="bars" @size="4x" class="c-icon"/>
+      </span>
+    </button>
+  </ul>
+  <div class="c-subheader justify-content-between">
+    <BreadCrumbs/>
+  </div>
+</header>

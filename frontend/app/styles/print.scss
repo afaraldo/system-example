@@ -1,0 +1,52 @@
+/* override styles when printing */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 2cm;
+  }
+  .container-fluid {
+    width: 98%;
+    margin: 0;
+    float: none;
+  }
+  body, .c-app{
+    margin: 0;
+    color: #000;
+    background-color: #fff;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12px;
+  }
+  button {
+    display: none !important;
+  }
+
+  a[href]:after {
+    content: none !important;
+  }
+  a, a:link, a:hover, a:visited {
+    color: #4f5d73;
+    text-decoration: none;
+  }
+  input,
+  textarea {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .c-main {
+    color: #000;
+    background-color: #fff;
+  }
+
+  .c-header, .c-footer, .c-sidebar {
+    display: none;
+  }
+
+  /* print.css */
+  .c-main::after {
+    content: "Copyright Ñandutic";
+    display: block;
+    text-align: center;
+  }
+}

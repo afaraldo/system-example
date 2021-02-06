@@ -1,0 +1,7 @@
+<PowerSelectMultiple
+        @searchEnabled={{true}}
+        @search={{this.searchPerson}}
+        @options={{this.people}}
+        @onChange={{action (mut this.selected)}} as |person|>
+  {{person.name}}
+</PowerSelectMultiple>

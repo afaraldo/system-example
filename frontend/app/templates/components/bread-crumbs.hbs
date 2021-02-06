@@ -1,0 +1,28 @@
+{{!--
+Your template can reference breadCrumbs, which is an array of objects containing the following properties:
+  label: The title of the breadcrumb.
+  path: The path that the crumb should link to. Can pass to link-to.
+  model: The model object that can be passed to link-to. May not be present.
+  linkable: True unless the controller's breadCrumbPath was false.
+  isCurrent: True for the most specific (last) bread crumb, otherwise false. --}}
+<ol class="breadcrumb border-0 m-0 px-0 px-md-3">
+  {{#each breadCrumbs as |crumb|}}
+    <li class="breadcrumb-item {{if crumb.isCurrent 'active'}}">
+    {{#if crumb.linkable }}
+      {{#unless crumb.isCurrent}}
+        {{#if crumb.model}}{{! to avoid null/undefined model in link-to }}
+          {{#link-to crumb.path crumb.model}}
+            {{crumb.label}}
+          {{/link-to}}
+        {{else}}
+          {{#link-to crumb.path}}
+            {{crumb.label}}
+          {{/link-to}}
+        {{/if}}
+      {{else}}
+        {{crumb.label}}
+      {{/unless}}
+    {{/if}}
+    </li>
+  {{/each}}
+</ol>

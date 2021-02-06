@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="collapse show">
+        <div class="card-body">
+          <BsForm @formLayout="vertical" @model={{this.model}}
+                  as |form|>
+            <legend class="scheduler-border">Factura</legend>
+            {{#each model as |invoice|}}
+              <li>{{invoice.number}} {{invoice.name}} </li>
+            {{/each}}
+            <div class="form-actions">
+              <BsButton @buttonType="submit" @type={{if form.isRejected "danger" "primary"}} @disabled={{form.isSubmitting}} @pendingText="Downloading...">
+                Guardar
+                {{#if form.isSubmitting}}
+                  {{fa-icon "spinner"}}
+                {{/if}}
+              </BsButton>
+            </div>
+          </BsForm>
+        </div>
+        <div class="card-footer bg-transparent">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{outlet}}

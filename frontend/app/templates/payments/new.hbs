@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <strong>Nuevo Pago</strong>
+        <div class="card-header-actions">
+          <a class="card-header-action btn-setting" href="#">
+            <i class="icon-settings"></i>A
+          </a>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body">
+          {{#bs-form formLayout="vertical" model=model
+                     novalidate=true as |form|}}
+            <fieldset>
+              <div class="row">
+                {{form.element controlType="text" label="" placeholder="Nombre, RUC" class="col-md-3" property="stampingNumber"}}
+              </div>
+            </fieldset>
+            <div  class="row">
+              <div class="col-md-8">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Concepto</th>
+                      <th scope="col">Vencimiento</th>
+                      <th scope="col">Monto</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Cuota #1</td>
+                      <td>31-04-2020</td>
+                      <td>100.000</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Cuota #2</td>
+                      <td>31-05-2020</td>
+                      <td>100.000</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Cuota #3</td>
+                      <td>31-06-2020</td>
+                      <td>100.000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-4">
+                <h2>Total: 300.000</h2>
+              </div>
+            </div>
+            <div class="form-actions">
+              {{#if model.isNew}}
+                {{bs-button defaultText="Facturar" type="primary" buttonType="submit"}}
+              {{else}}
+                {{bs-button defaultText="Imprimir" type="secondary" buttonType="submit"}}
+              {{/if}}
+            </div>
+          {{/bs-form}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{outlet}}

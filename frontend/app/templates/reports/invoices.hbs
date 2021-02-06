@@ -1,0 +1,40 @@
+<BsForm @formLayout="vertical" @model={{model}} as |form|>
+  <div class="row">
+    <div class="col">
+      <DatePicker
+              @from={{this.from}}
+              @to={{this.to}}
+      />
+    </div>
+    <div class="col">
+      <PersonSelect />
+    </div>
+    <div class="col">
+      <label class="control-label">Etiquetas</label>
+      <input value={{this.tag_ids}} class="form-control" oninput={{action (mut this.tag_ids) value="target.value"}} type="text">
+    </div>
+  </div>
+</BsForm>
+<div class="card">
+  <div class="card-header">
+    <b>Resumen Facturas Gastos Recibidas</b>
+  </div>
+  <div class="card-body">
+    <div class='report'>
+      <ModelsTableServerPaginated
+              @data={{@model}}
+              @columns={{this.columns}}
+              @showColumnsDropdown={{false}}
+              @showGlobalFilter={{false}}
+              @filterQueryParameters={{this.filterQueryParameters}}
+              @useFilteringByColumns={{false}}
+              @useNumericPagination={{false}}
+              @showCurrentPageNumberSelect={{false}}
+              @showComponentFooter={{false}}
+              @themeInstance={{this.themeInstance}}
+              @displayDataChangedAction={{fn this.displayAction}}
+      />
+    </div>
+  </div>
+</div>
+{{outlet}}

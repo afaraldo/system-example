@@ -1,0 +1,63 @@
+<BsForm @formLayout="vertical" @model={{ course }} @onSubmit={{action "submit"}} as |form|>
+  <fieldset>
+    <div class="row">
+      <div class="col-md-6">
+        <form.element @controlType="text" @placeholder="Nombre" @property="name" @autofocus="true"/>
+      </div>
+      <div class="col-md-2">
+        <form.element @controlType="text" @property="startDate" as |el|>
+          <PikadayInput @value={{el.value}} @format="DD/MM/YYYY" @onSelection={{action (mut el.value)}} id={{el.id}} @class="form-control"
+                        @placeholder="Inicio"/>
+        </form.element>
+      </div>
+      <div class="col-md-2">
+        <form.element @controlType="text" @property="endDate" as |el|>
+          <PikadayInput @value={{el.value}} @format="DD/MM/YYYY" @onSelection={{action (mut el.value)}} id={{el.id}} @class="form-control"
+                        @placeholder="Fin"/>
+        </form.element>
+      </div>
+      <div class="col-md-1 ml-auto">
+        <BsButton @type="success" @icon="fas fa-plus" @onClick={{action "addElement"}} />
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    {{#each course.course-concepts as |concept|}}
+      <div class="row">
+        <div class="col-md-7">
+          <form.element @controlType="power-select" @model={{concept}} @property="product"
+                        @placeholder="Producto/Servicio"
+                        @selected={{concept.product}} @onChange= {{ action (mut concept.product) }}
+                        as |el|>
+            <el.control @searchEnabled={{true}}
+                        @search={{ action "search" }}
+                        @noMatchesMessage="Resultados no encontrados"
+                        @loadingMessage="Cargando opciones"
+                        @searchMessage="Escribe para buscar"
+                        as |option|>
+              {{option.name}}
+            </el.control>
+          </form.element>
+        </div>
+        <div class="col-md-2">
+          <form.element @controlType="text" @model={{concept}} @property="price" @placeholder="Precio" />
+        </div>
+        <div class="col-md-2">
+          <form.element @controlType="text"  @model={{concept}} @property="expiry_date" as |el|>
+            <PikadayInput @value={{el.value}} @format="DD/MM/YYYY" @onSelection={{action (mut el.value)}} id={{el.id}} @class="form-control"
+                          @placeholder="Fecha Vencimiento"/>
+          </form.element>
+        </div>
+        <div class="col-md-1">
+          <BsButton @type="secondary" @icon="fas fa-trash-alt" type="secondary" @onClick={{action "deleteElement" concept}} />
+        </div>
+      </div>
+    {{/each}}
+  </fieldset>
+  <BsButton @buttonType="submit" @type={{if form.isRejected "danger" "primary"}} @disabled={{form.isSubmitting}} @pendingText="Downloading...">
+    Guardar
+    {{#if form.isSubmitting}}
+      {{fa-icon "spinner"}}
+    {{/if}}
+  </BsButton>
+</BsForm>

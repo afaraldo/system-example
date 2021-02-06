@@ -1,0 +1,28 @@
+<div class="card p-4">
+  <div class="card-body">
+    <form {{action "authenticate" on="submit"}}>
+      <h1>Login</h1>
+      {{#if errorMessage}}
+        <p class="text-danger">{{errorMessage}}</p>
+      {{/if}}
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{fa-icon "user"}}</span>
+        </div>
+        {{input id="email" placeholder="Correo electrónico" class="form-control" value=email autofocus="true"}}
+      </div>
+      <div class="input-group mb-4">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+              {{fa-icon "lock"}}
+            </span>
+        </div>
+        {{input id="password" placeholder="Contraseña" type="password" class="form-control" value=password}}
+      </div>
+      <button class="btn btn-block btn-primary mb-4" type="submit">Ingresar</button>
+      <div class="text-right">
+        <button class="btn btn-link px-0" type="button">¿Olvidó su contraseña?</button>
+      </div>
+    </form>
+  </div>
+</div>
