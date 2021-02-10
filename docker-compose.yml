@@ -16,17 +16,19 @@ services:
       - "3000:3000"
     environment:
       DATABASE_URL: "postgresql://postgres:password@db/system_app_development?pool=5"
+      API_URL: "http://localhost:3000"
+      RAILS_ENV=development
     depends_on:
       - db
-  web:
-    image: danlynn/ember-cli:latest
-    volumes:
-      - ./frontend:/myapp
+  #web:
+  #  image: danlynn/ember-cli:latest
+  #  volumes:
+  #    - ./frontend:/myapp
       #- .bash_history:/root/.bash_history
       #- node_modules:/myapp/node_modules
-    tmpfs:
-      - /myapp/tmp
-    ports:
-      - "4200:4200"
-    environment:
-      API_URL: "http://localhost:3000"
+  #  tmpfs:
+  #    - /myapp/tmp
+  #  ports:
+  #    - "4200:4200"
+  #  environment:
+  #    API_URL: "http://localhost:3000"

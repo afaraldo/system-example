@@ -116,3 +116,6 @@ gem 'newrelic_rpm', '~> 6.10', '>= 6.10.0.364'
 gem 'apartment', '~> 2.2.1', '>= 1.0.2'
 
 gem 'second_level_cache', '~> 2.4.0'
+
+#gem 'decent_exposure', '~> 3.0'
+
