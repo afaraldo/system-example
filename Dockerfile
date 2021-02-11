@@ -2,7 +2,6 @@ FROM ruby:2.7
 #RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 #RUN apt-get update -qq && apt-get install -y npm nodejs
 
-#RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
