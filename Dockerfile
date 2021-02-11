@@ -11,6 +11,7 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 #
 RUN apt-get update
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 RUN apt-get install -y nodejs npm
 COPY . /myapp
 WORKDIR /myapp/frontend
