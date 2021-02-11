@@ -83,7 +83,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
-    ENV.host = 'https://nandutic.herokuapp.com';
+    ENV.host = process.env.API_URL;
   }
 
   ENV['ember-simple-auth'] = {
