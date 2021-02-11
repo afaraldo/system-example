@@ -40,14 +40,14 @@ Logging::Rails.configure do |config|
   # be rolled on a daily basis, and the past 7 rolled files will be kept.
   # Older files will be deleted. The default pattern layout is used when
   # formatting log events into strings.
-  Logging.appenders.rolling_file( 'file',
-    :filename => config.paths['log'].first,
-    :keep => 7,
-    :age => 'daily',
-    :truncate => false,
-    :auto_flushing => true,
-    :layout => layout
-  ) if config.log_to.include? 'file'
+  #Logging.appenders.rolling_file( 'file',
+  #  :filename => config.paths['log'].first,
+  #  :keep => 7,
+  #  :age => 'daily',
+  #  :truncate => false,
+  #  :auto_flushing => true,
+  #  :layout => layout
+  #) if config.log_to.include? 'file'
 
 =begin
   # NOTE: You will need to install the `logging-email` gem to use this appender
