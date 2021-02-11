@@ -9,6 +9,7 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 #ENV RAILS_ENV production
 #ARG RAILS_MASTER_KEY
 RUN bundle install
+#
 RUN apt-get update
 RUN apt-get install -y nodejs npm
 COPY . /myapp
