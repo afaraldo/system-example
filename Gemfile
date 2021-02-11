@@ -119,3 +119,5 @@ gem 'second_level_cache', '~> 2.4.0'
 
 #gem 'decent_exposure', '~> 3.0'
 
+
+gem 'rails_12factor', group: [:staging, :production]
