@@ -12,3 +12,5 @@ npm install
 OR only
 
 sudo docker-compose up --build
+
+Demo: https://encarnacion.herokuapp.com
