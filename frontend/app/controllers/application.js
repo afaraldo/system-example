@@ -19,6 +19,11 @@ export default class ApplicationController extends Controller {
      allColumnsAreHiddenMsg: 'Ninguna columna visible',
      noDataToShowMsg: 'Sin datos',
      table: 'table datatable table-sm table-hover',
-     input: 'form-control form-control-sm'
+     input: 'form-control form-control-sm',
+    // The property on meta to load the pages count from.
+    metaPagesCountProperty: 'pages_count',
+
+    // The property on meta to load the total item count from.
+    metaItemsCountProperty: 'items_count',
   });
 }

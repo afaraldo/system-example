@@ -1,19 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :update, :destroy]
-
-  # GET /invoices
-  def index
-    if  params[:search]
-      @q = Invoice.search_for(params[:search])
-    else
-      @q = Invoice.ransack(params[:q])
-      @q.sorts = ['number desc', 'created_at desc'] if @q.sorts.empty?
-      @q = @q.result
-    end
-    @invoices = @q.page(params[:page]).per(params[:pageSize])
-
-    render json: @invoices.map{|invoice| invoice.becomes(Invoice)}#, meta: {itemsTotal: @invoices.total_count, pagesTotal: @invoices.total_pages}
-  end
+  resource :invoice
 
   # GET /invoices/1
   def show
@@ -54,5 +41,9 @@ class InvoicesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def invoice_params
       ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    end
+
+    def sorts
+      ['number desc', 'created_at desc']
     end
 end

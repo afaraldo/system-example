@@ -93,8 +93,8 @@ Logging::Rails.configure do |config|
   #
   #     config.log_to = %w[stdout file]
   #
-  #Logging.logger.root.level = config.log_level
-  #Logging.logger.root.appenders = config.log_to unless config.log_to.empty?
+  Logging.logger.root.level = config.log_level
+  Logging.logger.root.appenders = config.log_to unless config.log_to.empty?
 
   # Under Phusion Passenger smart spawning, we need to reopen all IO streams
   # after workers have forked.

@@ -6,10 +6,16 @@ $grid-gutter-width: 10px !default;
 @import "ember-power-select/themes/bootstrap";
 @import "ember-power-select";
 //@import "ember-bootstrap/bootstrap";
+@import "node_modules/@coreui/coreui/scss/bootstrap";
 @import "node_modules/@coreui/coreui/scss/coreui";
 @import "print";
 @import "notification";
 @import "ember-power-datepicker";
+
+// This rule is used for ember-model-table
+.columns-dropdown, .models-table-wrapper {
+  margin-bottom: 20px;
+}
 
 
 body > .app-body {

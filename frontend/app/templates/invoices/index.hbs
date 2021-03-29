@@ -1,22 +1,4 @@
-<BsForm @formLayout="vertical" @model={{model}} as |form|>
-  <div class="row">
-    <div class="col">
-      <DatePicker/>
-    </div>
-    <div class="col">
-      <label class="control-label">Proveedores</label>
-      <input value={{this.person_ids}} class="form-control" oninput={{action (mut this.person_ids) value="target.value"}} type="text">
-    </div>
-    <div class="col">
-      <label class="control-label">Etiquetas</label>
-      <input value={{this.tag_ids}} class="form-control" oninput={{action (mut this.tag_ids) value="target.value"}} type="text">
-    </div>
-  </div>
-</BsForm>
 <div class="card">
-  <div class="card-header">
-    <b>Facturas Clientes</b>
-  </div>
   <div class="card-body">
     <ModelsTableServerPaginated
             @data={{this.model}}

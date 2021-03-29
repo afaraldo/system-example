@@ -52,6 +52,8 @@ group :development do
   # better_errors helps debug
   #gem "better_errors"
   #gem "binding_of_caller"
+  gem 'debase'
+  gem 'ruby-debug-ide'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -117,7 +119,6 @@ gem 'apartment', '~> 2.2.1', '>= 1.0.2'
 
 gem 'second_level_cache', '~> 2.4.0'
 
-#gem 'decent_exposure', '~> 3.0'
-
+gem 'controller_resources'
 
 gem 'rails_12factor', group: [:staging, :production]
