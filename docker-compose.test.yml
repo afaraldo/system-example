@@ -1,0 +1,34 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: system_app_development
+      POSTGRES_PASSWORD: password
+  api:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rspec"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://postgres:password@db/system_app_development?pool=5"
+      API_URL: "http://localhost:3000"
+      RAILS_ENV: test
+    depends_on:
+      - db
+  #web:
+  #  image: danlynn/ember-cli:latest
+  #  volumes:
+  #    - ./frontend:/myapp
+      #- .bash_history:/root/.bash_history
+      #- node_modules:/myapp/node_modules
+  #  tmpfs:
+  #    - /myapp/tmp
+  #  ports:
+  #    - "4200:4200"
+  #  environment:
+  #    API_URL: "http://localhost:3000"
